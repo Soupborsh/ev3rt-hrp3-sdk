@@ -1,4 +1,4 @@
-APPL_COBJS += cli_main.o apploader.o gui.o
+APPL_COBJS += cli_main.o apploader.o gui.o getentropy_stub.o
 
 COPTS += -DBUILD_LOADER
 BUILD_LOADER=1

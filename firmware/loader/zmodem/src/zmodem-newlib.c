@@ -8,6 +8,7 @@
 #include <errno.h>
 #include "kernel/domain.h"
 #include "tlsf.h"
+#include "driver_interface_filesys.h"
 
 long _read_r(void *reent, int fd, void *buf, size_t cnt) {
     syslog(LOG_NOTICE, "%s called.", __FUNCTION__);
@@ -22,7 +23,7 @@ int _fstat_r(void *reent, int fd, struct stat *pstat) {
 
 long _write_r(void *reent, int fd, const void *buf, size_t cnt) {
     //syslog(LOG_NOTICE, "%s called.", __FUNCTION__);
-    extsvc_newlib_write_r(reent, fd, buf, cnt, NULL, TDOM_KERNEL);
+    extsvc_newlib_write_r((intptr_t)reent, fd, (intptr_t)buf, cnt, (intptr_t)NULL, TDOM_KERNEL);
 	return 0;
 }
 
