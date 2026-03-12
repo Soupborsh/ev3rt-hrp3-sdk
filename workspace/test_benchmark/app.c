@@ -1,5 +1,4 @@
 #include "ev3api.h"
-#include "tool_svc.h"
 
 #define N_READS 1000
 
@@ -9,6 +8,7 @@
 static void print_u64_on_screen(const char *fmt, u64 x);
 
 void main_task(intptr_t unused) {
+  ev3_sensor_config(EV3_PORT_1, GYRO_SENSOR);
   SYSTIM start, end, time;
   get_tim(&start);
   for (u32 i = 0; i < N_READS; i++) {
